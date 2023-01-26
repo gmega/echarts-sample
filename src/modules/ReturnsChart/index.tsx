@@ -5,9 +5,7 @@ interface Props {
     data: Array<TimeSeries>;
 }
 
-
 const ReturnsChart = ({ data }: Props) => {
-    // @ts-ignore
     const makeOptions = () => ({
         title: {
             text: 'Returns',
@@ -44,7 +42,9 @@ const ReturnsChart = ({ data }: Props) => {
             type: 'time',
             splitLine: {
                 show: false
-            }
+            },
+            axisLine: { show: false },
+            axisTick: { show: false }
         },
         yAxis: {
             type: 'value',
@@ -55,7 +55,25 @@ const ReturnsChart = ({ data }: Props) => {
                 formatter: formatPercent(0)
             }
         },
-        series: data.map(formatTimeSeries),
+
+        series: [
+            {
+                type: 'line',
+                markLine: {
+                    silent: true,
+                    label: {formatter: ''},
+                    symbol: ['none', 'none'],
+                    data: [
+                        {name: 'x-axis', yAxis: 0}
+                    ],
+                    lineStyle: {
+                        width: 1.5,
+                        color: 'lightgray'
+                    }
+                }
+            }
+            // @ts-ignore
+        ].concat(data.map(formatTimeSeries)),
         legend: { data: data.map((entry: TimeSeries) => entry.entity_id) }
     });
 
