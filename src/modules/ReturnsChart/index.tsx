@@ -48,6 +48,10 @@ const ReturnsChart = ({ data }: Props) => {
         },
         yAxis: {
             type: 'value',
+            name: 'return',
+            nameLocation: 'center',
+            // oh, man... https://github.com/apache/echarts/issues/12415
+            nameGap: 60,
             splitLine: {
                 show: false
             },
