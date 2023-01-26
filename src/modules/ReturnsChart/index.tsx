@@ -11,6 +11,7 @@ const ReturnsChart = ({ data }: Props) => {
             text: 'Returns',
             subtext: 'pool and benchmark returns'
         },
+
         // We don't want the toolbox in our app.
         toolbox: {
             show: true,
@@ -20,6 +21,7 @@ const ReturnsChart = ({ data }: Props) => {
                 }
             }
         },
+
         tooltip: {
             show: true,
             trigger: 'axis',
@@ -38,6 +40,7 @@ const ReturnsChart = ({ data }: Props) => {
                 }
             }
         },
+
         xAxis: {
             type: 'time',
             splitLine: {
@@ -46,6 +49,7 @@ const ReturnsChart = ({ data }: Props) => {
             axisLine: { show: false },
             axisTick: { show: false }
         },
+
         yAxis: {
             type: 'value',
             name: 'return',
@@ -80,7 +84,6 @@ const ReturnsChart = ({ data }: Props) => {
         ].concat(data.map(formatTimeSeries)),
         legend: { data: data.map((entry: TimeSeries) => entry.entity_id) }
     });
-
 
     const formatTimeSeries = (series: TimeSeries) => {
         return {
